@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\input{package-and-defns}
+\begin{document}
+\section{Chernoff via Bernstein:}
+  If you have a bunch of variables $A_i$ that are $\leq L$ and with zero sum (0-1 coin flips are just a shifted and scaled version of this), then
+  \begin{align}
+  \prob{A_i \forall i}{\sum_{i=1}^s A_i \geq t}
+  \end{align}
+  with probability 
+  \begin{align}
+    \exp\left(\frac{t^2/2}{\var{A_i \forall i}{(\sum_{i=1}^s A_i)} + Lt/3}\right)
+  \end{align}
+  or alternately
+  \begin{align}
+    \max\left(\exp\left(\frac{t^2/2}{2Var(x)}\right), \exp\left(\frac{t^2/2}{Lt/3}\right)\right)
+  \end{align}
+
+  \section{Implications}
+  \subsection{If you have a $\pm 1$ coin, and you want to figure out the number of flips you need such that you get less than $s/10$ from $0$ (the mean) with $1/2$ probability.}
+  Here, of course, $s/10$ can be replaced with $s\epsilon$.
+  Substitute:
+  \begin{enumerate}
+    \item $L = 1$
+    \item $t = s/10$
+    \item $var= s$ (variance of independent variables add).
+  \end{enumerate}
+  \tim{The following is wrong: we already know what t is..... here s must equal something like 100 or 50.}
+  Then the condition of obtaining a bounded sum with at least $1/2$ probability is equivalent to showing that $t^2/2 = O(s)$, (from the variance term in th denominator of Bernstein, the otehr term is negligible [unproven!]).
+  Therefore, $s = O(\sqrt{t})$, up to a constant of size 2-ish.
+  \subsection{If you have some not-yet-specified parameter $n$ and a bunch of $\pm$ coins, and $t = \epsilon s$, (an epsilon fraction of the number of flips), and you want the sum of your coins to be large with small probability in $n$, then...}
+  Here, substitute:
+  \begin{enumerate}
+    \item $L=1$
+    \item $t = \epsilon s$
+    \item $variance-thing = s$.
+  \end{enumerate}
+  Then if we want the probability to be $\frac{1}{n^{O(1)}}$, noting that $n$ is a parameter completely separate from anything else we've done so far, then set:
+  \begin{align}
+    t^2/s = \log n
+  \end{align}
+  or
+  \begin{align}
+    t^2/s = \epsilon^2 s^2 / s = \epsilon^2 s = \log n
+  \end{align}
+  or $s = \frac{\log n}{\eps^2}$. As usual, the $Lt/3$ term becomes non-dominant, as it is $\epsilon s$ and is much smaller than $s$.
+
+
+\end{document}
