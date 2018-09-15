@@ -1,0 +1,58 @@
+\input{header}
+\begin{document}
+\section{Reduced problem (?)}
+Let $K$ be an unweighted clique where each edge has importance score
+(possibility: leverage score) $< \eps$.
+Here, the importance score is taken with respect to a graph $G$
+containing $K$.
+
+Then use $O(|V(K)|)$ edges to find some good approximation for $G$.
+Additionally, having a nice bound on how $K$ approximates $G$ could be
+nice.
+
+However, it seems that in some cases, $x^T L_K x$ and $x^T L_G x$ are
+the same, so approximating $L_K$ alone may not work well. One example of
+this is if you have two cliques $A$ and $B$, and a vertex $v$ between
+them connected to $\eps^{-1}$ elements of $A$ and $\eps^{-1}$ elements
+of $B$. Each edge has leverage score $< O(\eps)$ (calculate effective
+resistances to check). But the clique formed by Schur complementing out
+$v$ can easily contain the entire quadratic form, if the vector input is
+$1$ on one clique and $-1$ on the other clique.
+
+But you would only be allowed one matching.
+
+\section{Line}
+Suppose I have a line graph $G$. I split each edge into $\eps^{-1}$
+copies, and try to Schur complement out any vertex $v$.
+
+Then I am left with the following task: Use $\eps^{-1}$ edges to
+sparsify the clique between $v-1$ and $v+1$. That's a lot of edges, and
+a small number of vertices.
+\section{Star}
+\section{Failed attempt number 2}
+Suppose I have the following Lemma, which is very similar to Lemma 7.6
+in Chu et. al. (CGPSSW 18).
+
+\begin{lemma} Let $K$ be a collection of bicliques. Then $K$ can be 
+  $\epsilon$ sketched with
+  $O(n \eps^{-1} + n(K) \eps^{-0.5})$ edges.
+\end{lemma}
+Here, $n(K)$ is the total number of vertices in a collection of
+bi-cliques.
+
+Now: suppose we wanted to take a vertex $v$ with $d$ multi-edges
+adjacent to $v$. Here, $d$ can be larger than $n$.
+
+If each of the multi-edges have leverage score less than $\eps$, then
+the resulting (weighted) clique obtained via the Schur complement
+has a total leverage score less than $d\eps$.
+
+Let this clique be $K$. Then since 
+\[ L_G^{\dag/2} L_K L_G^{\dag/2} \leq d\eps,\]
+
+then 
+
+\[x^T L_K x \leq d\eps x^T L_G x \]
+
+Er, that's a real bad bound. I'd hoped it to be $d\eps / n$.
+\end{document}
