@@ -1,0 +1,114 @@
+\input{header}
+\begin{document}
+\section{Abstract}
+We show that effective resistance satisfies, for any integer vector $v$
+whose coordinate sum is $1$:
+
+\[
+  v^T D v \leq 0.
+  \]
+In other words, we will show effective resistance is a Hypermetric.
+
+This project is part of a larger goal: we'd like to determine where in the heirarchy of
+metrics Effective Resistance sits. The heirarchy in question is:
+
+\[ l_2 \subset Sphere \subset l_1 \subset HyperMetric \subset Neg-Type. \]
+
+Note that we can show effective resistance is not contained in $l_2$
+(trees are in $ER$), that $l_2$ is not contained in effective resistance
+(the Euclidean square cannot embed). It was known that effective
+resistances were negative type. We still do not know if effective
+resistances are in $l_1$.
+\section{Proof Overview}
+Suppose a graph $G$ has positive conductances $c_e$ and Laplacian $L$. Let $R_e$
+denote the effective resistance of edge $e$. For any
+weights $w_e \subset \mathbb{R}$:
+\[ \sum w_e R_e \]
+can be reduced (or kept at the same quantity) by taking any edge $e'$
+and either raising $c_{e'}$ to be arbitrarily high, or zero. Note that
+$v^T D v$ can be written as $\sum w_e R_e$ for weights $w_{ij} =
+v_{i}v_{j}$. (Proof omitted).
+
+Consider any tree on $G$, where each tree edge has non-zero
+conductance. (There must exist such a tree if $G$ is connected by
+    resistance wires). For every non-tree edge, we either raise the
+conductance to infinity, or we zero the conductance: whichever one happens to
+increase $\sum w_e R_e$. If we zero an edge out, we reduce the vertex
+count. If we zero the conductance of an edge, we keep going until
+we've processed all the non-tree edges.
+
+Now if we look at the conductances in the graph, we are either left with
+a tree (if we zero-ed out all non-tree edges),
+     on which the hyper-metric property
+holds (trees are in $l_1$, which are hypermetrics), or we are left with
+an infinite-conductance edge. If we are left with a tree, we are finished:
+we raised $v^T D v$ by zeroing out non-tree edges, and we were left with
+a quantity that was $\leq 0$. 
+
+I claim that if we zero the conductance of an edge $ij$, we can finish
+by induction on the number of vertices. I omit the proof here, and will
+show it on the blackboard.
+
+\section{Filling in the Proofs for the Outline.}
+Let $\chi_{ij}$ be the vector that is $1$ at $i$, and $-1$ at $j$, and zero
+elsewhere. Recall that $R_{ij} := \chi_{ij}^T L^\dag \chi_{ij}$.
+\begin{theorem}
+Let $R_e$ denote the effective resistance of edge $e$ in some graph $G$
+with non-negative conductacnes. For any real weights $w_e'$ and any edge
+$e$, the expression $\sum_e w_e R_e$ is monotonic in $c_{e'}$,
+\end{theorem}
+\begin{proof}
+Sherman-Morrison for pseudoinverses tells us that:
+
+\[ (M + u^T u)^\dag = M^\dag - \frac{M^\dag u u^T M^\dag}{1 + u^T M^\dag u}
+\]
+Note that raising $c_{e'}$ changes the Laplacian by a rank one update.
+(Proof omitted). Let $L'$ be the Laplacian $L$ after raising $c_{e'}$ by
+scalar $k$, where $k$ can be positive or negative. Now, $u$ denotes the
+vector $\chi_e$.  Then:
+
+\[ (L')^\dag = (L + ku^T u)^\dag = L^\dag -
+\frac{k \cdot L^\dag u u^T L^\dag}{1 + k \cdot u^T L^\dag u}
+\]
+Therefore the change in effective resistance (using the standard
+    effective resistance formula) is:
+
+\[ \sum w_e (R_e - R'_e) \]
+\[ = \sum w_e \chi_e^T \left((L')^\dag - L^\dag\right) \chi_e \]
+\[ = \sum -w_e \left(\chi_e^T \frac{k \cdot L^\dag u u^T L^\dag}{1 + k \cdot
+  u^T L^\dag u} \chi_e\right)
+ \]
+\begin{align}
+\label{eq:er-change}
+= \sum_e \frac{k}{1+k\cdot u^T L^\dag u}
+\left(-w_e \cdot 
+    \chi_e^T L^\dag u u^T M^\dag \chi_e\right).
+ \end{align}
+
+ Letting 
+ \[C \defeq u^T L^\dag u\]
+ \[S_e \defeq - w_e \cdot \chi_e^T L^\dag u u^T L^\dag \chi_e, \]
+ Equation~\ref{eq:er-change} becomes:
+
+ \begin{align}
+ &\sum_e \frac{k \cdot S_e }{1+k \cdot C}
+ \\
+ &= \frac{k \cdot \sum_e S_e }{1+k \cdot C}
+ \\
+ &= \frac{k \cdot T}{1+k \cdot C}
+ \end{align}
+ where $T := \sum S_e$.
+
+ This is a monotonic function in $k$ (proof omitted). Therefore, the extremes occur when
+ $k$ is set to be as negative as possible (zero-ing out $k$), or by
+ raising it to be as large as possible (setting it to be arbitrarily
+     large).
+
+ (Note: I'm not actually sure Sherman Morrison is true for
+  Pseudoinverses.... or what conditions need to be set on the rank one
+  update. Perhaps it suffices that the rank one update has a nullspace
+  inside the original matrix $M$'s nullspace?)
+\end{proof}
+This completes the proof of our main lemma. The rest of our proof
+follows the Proof Overview. (Detailed omitted.)
+\end{document}

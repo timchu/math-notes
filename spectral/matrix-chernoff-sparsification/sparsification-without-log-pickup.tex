@@ -1,0 +1,179 @@
+\input{header}
+
+\begin{document}
+\subsection{Sparsification matching Spielman bounds}
+In this subsection, we describe a sparsification algorithm that involves flipping a fair coin on each edge, to determine wehther we keep it in the sparsifier. We iterate this $\log \frac{m}{n}$ times.
+
+This is known \tim{ is it? }. Our algorithm for degree-preserving sparsification on unit weight graphs will use the same technique.
+
+\subsubsection{Algorithm Description} \label{subsubsection:alg-desc}
+\begin{enumerate} 
+\item Take the graph $G$, and find all edges with effective resistance less than $2(n-1)/m$ (twice the average effective resistance).
+\item Toss a fair coin on those each of those edges, to determine whether to either double
+  their weight or remove them from the graph.
+\item Iterate on the resulting graph for $O(\log \frac{m}{n})$ rounds.
+\end{enumerate}
+\subsubsection{Proving this algorithm works}
+\begin{lemma} \label{lem:edge-keeps}
+At least $\frac{1}{2}$ of the edges in the graph have effective resistance less than $\frac{2(n-1)}{m}$. \end{lemma}
+
+\begin{proof} The average effective resistance of edges in a graph is $\frac{n-1}{m}$, via trace arguments. The rest follows from Markov's inequality. \end{proof}
+
+  First, we state Matrix Bernstein, and a direct lemma of Matrix Bernstein \tim{which may or may not be Matrix Azuma.} 
+  \begin{theorem} (Matrix Bernstein)
+    Let $X = \sum_{i=1}^s S_i$. The norm of the total variance of $X$ is:
+    \begin{align}
+      \sigma^2 = \left| \left| \sum_{i=1}^s \expec{S_i} {S_i^2} \right| \right|
+    \end{align}
+    Then $\prob{}{||X|| \geq t} \leq d \cdot e^{\frac{-t^2}{\sigma^2 + Lt/3}}$
+    where $d$ is the dimension of $X$ and $L = max||S_i||$. Here, $||M ||$ represents the spectral norm of $M$.
+
+    (\tim{Check if d is defined the right way})
+    %% \tim{Dimension of X? Can't X be low dimension even if the S are in high dimension?}
+  \end{theorem}
+  \begin{lemma} \label{lem:matrix-azuma}
+    Let $X = \sum_{i=1}^s S_i$ and $S_i := \mu_i M_i$ where $M_i$ is a fixed PSd matrix and
+    $\mu_i$ is a Rademacher random variable, 
+    then $\prob{}{||X|| \geq t} \leq d \cdot e^{\frac{-t^2}{L \cdot \expec{S_i}{X}+ Lt/3}}$
+    where $d$ is the dimension of $X$ and $L = max||S_i||$.
+    Here, $||Y ||$ represents the spectral norm of $Y$.
+  \end{lemma}
+  \begin{proof} This follows from
+    \begin{align}
+    \expec{S_i} {S_i^2} \preceq \max_{i}||M_i|| \sum{M_i} 
+    \end{align}
+    when $M_i \succeq 0$.
+
+    \tim{I'd much rather define a matrix absolute value and use $abs(S_i)$
+    rather than $M_i$}
+  \end{proof}
+
+  \begin{lemma} Let $G'$ be the output of the algorithm stated in
+  \ref{subsubsection:alg-desc}. Then $G'$ is with $\frac{1}{n^{O(1)}}$ probability an $1+O\left(\sqrt{\frac{n \log n}{m}}\right)$ sparsifier, with high probability. \end{lemma}
+    \begin{proof}
+      Consider the Laplacian $L_e$ corresponding to each edge of the graph $G$. Let
+      $E'$ be the set of edges in $G$ with effective resistance less than
+      $\frac{2(n-1)}{m}$.
+      
+      Let $S_e$ be the set of independent random variables such that: it is
+      $L_e$ with probability $\frac{1}{2}$ and $-L_e$ with probability
+      $\frac{1}{2}$. Recall $G'$ is the output of the algorithm in
+      \ref{subsubsection:alg-desc}. Then 
+
+      \begin{align}
+        L_{G'} := \left(\sum_{e \in E} L_e \right) + \left(\sum_{e in E'}
+      S_e\right).
+      \end{align}
+
+      by construction. If we left and right multiply this equation by $L_G^{\dag/2}$ and
+      substitute $X_{H} := L_G^{\dag/2} L_{H} L_G^{\dag/2}$ for any graph $H$,
+      and let $T_e := L_G^{\dag/2} S_{e} L_G^{\dag/2}$ then we
+      get: 
+
+      \begin{align}
+      X_{G'} := \left(\sum_{e \in E} X_e\right) + \left(\sum_{e \in E'}
+      T_e\right).
+      \end{align}
+
+      Note that $\expec{T_e}{X_{G'}} = I$ and $T_e$ are independent random
+      variables with expected value zero satisfying (by construction):
+
+      \begin{align}
+      ||T_e|| \leq \frac{2(n-1)}{m}
+      \end{align}
+      and 
+
+
+      \begin{align}
+      \sum_{e \in E'} L_e \preceq I
+      \end{align}
+
+      then we can apply lemma \ref{lem:matrix-azuma} to get:
+
+      \begin{align}
+      \prob{}{||X_{G'} || \geq t} \leq n \cdot
+      e^{\frac{-t^2}{\frac{2(n-1)}{m} + \frac{2(n-1)t}{m}}}
+      \end{align}
+
+      %% Note that the number of independent random variables we summed didn't
+      %% actually matter one iota for matrix variance -- the important part is that
+      %% T_e's sum \preceq I. 
+
+      Note that if $t = O\left(\sqrt{\frac{n \log n}{m}}\right)$ (and $t \leq 1$), then 
+
+      \begin{align}
+      n \cdot e^{\frac{-t^2}{\frac{2(n-1)}{m} + \frac{2(n-1)t}{m}}}
+      = \frac{1}{n^{O(1)}} 
+      \end{align}
+
+
+    thereby proving that 
+      
+      \begin{align}
+      ||X_{G'} - I|| \leq O\left(\sqrt{\frac{n\log n}{m}}\right)
+      \end{align}
+        with polynomially high probability.
+      which proves that $L_{G'}$ is a $1 + O\left(\sqrt{\frac{n\log n}{m}}\right)$
+      sparsifier of $L_G$ with
+      high probability.
+    \end{proof}
+    \tim{I will do a major cleanup on this part...}
+    Some words about how chaining this lemma we just proved, with log n
+    iteration, causes error to blow up geometrically each time, with factor
+    $\sqrt{2}$ which is fine, 
+    making the total error $\epsilon$ thanks to convergence of geometric series.
+
+    Likewise, the run time of a single iteration of the algorithm described in
+    \ref{subsubsection:alg-desc} is also nearly linear in $m$, and is thus
+    dominated by the first iteration (as edges decreases by a $\frac{1}{2}$
+    factor each time.
+
+    \subsection{Obtaining a degree-preserving sparsifier of size 
+    $O\left(\frac{nl \log n}{\eps^2}\right)$ in $X$ time, given an
+    $(O(n), l)$ short-cycle decoposition}
+
+    \tim{This is a very very rough shoddy writeup. The key part is that I
+    believe you only pick up an $l$ factor in space.  Note that I think you can
+    do better, in that I think you can pick up some sublinear function of $l$
+    because I naively bounded the effective resistance of a cycle to be the sum
+    of the effective resistances of the edges, and also did some matrix absolute
+    value shenanigans under the hood when bounding the variance parameter. Both
+    if these assumptions seem a little silly.}
+
+    Cycles change nothing except the effective resistance calculation (and now
+    we sparsify down to $\frac{3}{4}$ as many edges, in each step of te
+    algorithm, which ultimately changes nothing).
+
+    This throws in an extra $l$ factor into the variance squared,
+    \tim{not an $l^2$ factor, which is what I initially expected}.
+
+    Therefore, $t$ is now $= O\left(\sqrt{\frac{nl \log n}{m}}\right)$ (and $t
+    \leq 1$), and so the final number of edges $m'$ we can sparsify to while
+    incurring an $\epsilon^2$ error, satisfies:
+
+    \begin{align}
+       \eps = O\left(\sqrt{\frac{nl \log n}{m'}}\right)
+    \end{align}
+    or
+    \begin{align}
+       \eps^2 = O\left(\frac{nl \log n}{m'}\right)
+    \end{align}
+    or
+    \begin{align}
+       m' = O\left(\frac{nl \log n}{\eps^2}\right)
+    \end{align}
+    The runtime is more than linear in $m$, so since the number of edges
+    decreases geometrically at each iteration of our coin-tossing algorithm,
+    the total run time is a constant factor of the runtime of the first iteration.
+
+    That is to say, the total run time is the time it takes to run a short cycle
+    decomposition and estimate effective resistances on each cycle.
+
+    \tim{I gave some thought into how degree preserving property might help us
+    get a better sparsfier than the naive $l$ factor in space we pick up,
+    where $l$ is the length of the short cycles in a short-cycle decomposition.
+    I had no idea how to proceed, for a couple good reasons I will not go into here.}
+\end{document}
+   
+
+

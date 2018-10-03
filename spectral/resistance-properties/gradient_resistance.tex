@@ -1,0 +1,30 @@
+\input{header}
+\begin{document}
+What is the gradient of Effective Resistance between two vertices with
+respect
+to a single edge's resistance? This is part of the "Is Effective Resistance a
+Hyper-metric" problem.
+
+Using the "min-energy-flow" formulation of Effective Resistance, I show
+that the gradient is equal to the square of the flow on that edge.
+
+\section{Why?}
+Let the flow on an edge be $f$ in any min energy flow with boudnary
+constraints. Suppose the resistance of that edge is lowered by $\eps$.
+
+The min-energy flow must decrease by at least $\epsilon \cdot f^2$.
+If you raised the resistance of that edge by $\eps$, the min-energy flow
+must increase by at most $\epsilon \cdot f^2$. This is because those two
+values are the change in flow-energy assuming the underlying
+flow-with-boundary-conditions doesn't change.
+
+Since the partial of Effective Resistance with respect to a single edge
+is continuous (no proof!), we conclude it must be exactly $f^2$
+(questionable claim!)
+
+\section{Extensions?}
+I Believe the above claim holds for $q$-flow-energy-minizers, where this
+is defined to be th minimum energy flow from point $A$ to point $B$
+where energy is calculated by taking $f^q$.
+
+\end{document}

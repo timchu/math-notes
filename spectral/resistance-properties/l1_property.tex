@@ -1,0 +1,71 @@
+\input{header}
+\begin{document}
+We prove Effective Resistance isometrically embeds into $L1$, completing
+our exploration on where in the Deza heirarchy of metrics that effective
+resistance fits into. The proof is an inductive argument using Sherman
+Morrison.
+Throughout this note, let $\chi_{ij}$ is defined as
+the vector with $1$ at vertex $i$ and $-1$ at vertex $j$ and zero
+elsewhere.
+
+\begin{theorem} Effective Resistance is in $L1$. \end{theorem}
+
+We prove this using two theorems. Let $R_e$ be the effective resistance
+of edge $e$, and $c_e$ its conductance.
+
+\begin{theorem}
+For any graph $G$,
+let $\mathcal{G}'$ be the set of graphs with one edge removed from
+$G$. 
+
+\[ L_G^\dag = (m-n+1) \cdot 
+\sum_{e \in \mathcal{E(G)}'}
+\lim_{c \rightarrow 1}
+(1-c \cdot R_ec_e) \cdot L_{G
+- c \cdot e}^\dag \]
+\end{theorem}
+How does this help us? Well, if $G$'s minimum edge separator has a
+cardinality of more than $1$, then the
+above equation is equivalent to:
+\[
+  L_G^\dag = (m-n+1) \cdot 
+\sum_{e \in \mathcal{E(G)}'}
+(1- R_ec_e) \cdot L_{G
+- e}^\dag
+\]
+and thus:
+\[ \chi_{ij}^T L_G^\dag \chi_{ij} =
+(m-n+1) \cdot 
+\sum_{e \in \mathcal{E(G)}'}
+\chi_{ij}^T\left(
+(1- R_ec_e) \cdot L_{G
+- e}^\dag \right) \chi_{ij} \]
+and we are done by induction on the edges in $G$.
+
+\section{If $e$ is an edge-separator}
+
+Note that if $e$ is not an edge separator of $G$, then
+\[
+\lim_{c \rightarrow 1}
+(1-c \cdot R_ec_e) \cdot L_{G
+- c \cdot e}^\dag
+\]
+is equal to:
+\[
+(1- \cdot R_ec_e) \cdot L_{G - e}^\dag.
+\]
+Now we examine what happens if $e$ is an edge-separator of $G$.
+
+\begin{theorem}
+If $e$ is an edge-separator of $G$ that splits $G$ into two clusters,
+then:
+\[
+\chi_{ij}^T \left(\lim_{c \rightarrow 1}
+(1-c \cdot R_ec_e) \cdot L_{G
+- c \cdot e}^\dag\right) \chi_ij
+\]
+is equal to $0$ if $i$ and $j$ are in the same cluster, and $c_e$
+otherwise.
+\end{theorem}
+
+\end{document}

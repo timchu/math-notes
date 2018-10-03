@@ -1,0 +1,75 @@
+\input{header}
+\newcommand\ER{\textbf{r}}
+\newcommand\Linv{L^{\dag}}
+\newcommand\sqrtLinv{L^{\dag/2}}
+\newcommand\chiuv{\chi_{uv}}
+\begin{document}
+\section{Introduction}
+Suppose $D$ is a matrix with elements $d_{ij}$. Is it the effective resistance in
+an underlying graph $G$? (Note that this paper does not account for $0$
+    resistance edges, as those break the pseudoinverse propety.)
+
+\section{Definitions}
+\begin{enumerate}
+\item Let $\chi_v$ denote the vector with $1$ at vertex $v$ and $0$ everywhere
+else. 
+\item Let $\chi_{uv}$ denote the vector $\chi_u - \chi_v$.
+\item Let $P := I - \frac{1}{n}J$ where $J$ is the all ones matrix.
+\item $L$ is the Laplacian of a graph $G$.
+\end{enumerate}
+
+\begin{definition}
+Effective resistance between vertice $u$ and $v$ is defined to be:
+$$ \ER_{uv} \defeq \chi_{uv}^T \Linv \chi_{uv}. $$
+\end{definition}
+where $L_{ij}$ is the \textbf{conductance} of the unique wire connecting $i$
+and $j$ in underlying graph $G$. 
+Note that this is the classic definition of effective resistances,
+except that it only works when the resistances are non-zero.
+(Conductance cannot be infinite).
+
+\section{Is a distance ER? If so....}
+\begin{align}
+d_{uv} = \chiuv^T \Linv \chiuv.
+\end{align}
+
+\begin{align}
+d_{uv} = \Linv_{uu} + \Linv_{vv} - 2 \cdot \Linv_{uv}.
+\end{align}
+
+\begin{align}
+D = [\Linv_{uu}] + [\Linv_{vv}] - 2 \Linv.
+\end{align}
+
+\begin{align}
+\frac{-P^T D P}{2} = \Linv.
+\end{align}
+
+\begin{align}
+\left(\frac{-P^T D P}{2}\right)^\dag = L.
+\end{align}
+
+Or alternately, 
+\begin{align}
+\left(-P^T D P \right)^\dag = 2L.
+\end{align}
+
+Now we would like to check if $-P^T D P$ being Laplacian AND RANK N-1 is enough to
+guarantee that $D$ is an effective resistance matrix. Here, I claim that
+$-P^TDP$ is the inverse Laplacian that generates distance matrix $D$.
+
+Proof: We claim 
+\[ d_{uv} = \chiuv^T (-P^TDP/2) \chiuv. \]
+Because $P \cdot \chiuv$ = $\chiuv$ since $J \cdot \chi_uv = 0$ then this claim is equivalent to:
+\[ d_{uv} = \chiuv^T (-D/2) \chiuv. \]
+or
+\[ d_{uv} = -\frac{1}{2}(d_{uu} + d_{vv} - 2d_{uv}). \]
+
+Since $d_{uu} = d_{vv} = 0$, then this expression is $d_{uv}$ as desired.
+
+Note that the $P \cdot \chiuv = \chiuv$ for all $\chiuv$,
+and $P$ squashing the all ones vector were
+the only essential requirements on $P$. Our choice of $P$
+satisfies both of these.
+
+\end{document}
