@@ -1,0 +1,44 @@
+\input{header}
+\begin{document}
+Reductions; General graph to a diameter $ D = O(\log n)$ graph.
+
+\begin{theorem}
+  Low diameter decomposition: It takes linear time (single
+  processor) to decompose into $O(\log n)$ size pieces, in $O(m + n\og
+  n)$ time, constant fraction of edges.
+\end{theorem}
+
+Note: we only need $O(1 - 1/\log n)$ edges in cycles.
+
+Assume small diameter: Cycle Cover. ($O(\log n)$ congestion, every edge
+is covered).
+
+\begin{theorem} Parter '18. Cycle cover doable with cycles length at
+  most $D$, every edge in at most $C$ cycles. Here, $C = polylog$ and $D
+  = \log$. This can be done in $O(m)$ time. (Bridgeless graphs).
+\end{theorem}
+
+Everything except time is covered in Parter '18. 
+Parter '18: how to find a cycle cover. Divide the line into blocks. The
+number of non-tree endpoints-of-edges is exactly $100$.  (Call this the
+non-tree degree). The non-tree of a block is $50 \leq 100$ by
+construction. (Can ignore over-heavy singletons).
+
+When you contract a non-tree edge (let $M$ be non-tree edges), contract
+the blocks (?), then this graph counting self loops and all that, will
+have $M /50 \leq x \leq M / 100$ nodes and $M$ edges.
+
+In this contracted graph, can find the $O(\log n)$ size cycles. Goran
+has a bug!
+
+Algorithm part 1: Take any spanning tree (of low depth). (Line not of
+low depth?)
+
+\section{Parter's Algorithm.}
+For any graph, take a low diameter spanning tree by BFSing on it. Then,
+contract the graph based on a pre-order traversal. Take successive
+subtrees of graphs rooted at the vertex in the pre-order traversal, and
+start including them in each "part" until the number of non-tree edges
+leaving them is between 50 and 100.
+
+\end{document}

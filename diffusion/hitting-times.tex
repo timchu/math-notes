@@ -1,0 +1,77 @@
+
+In this note, we examine diffusion. We cover:
+
+(a) Hitting Times.
+
+(b) Commute Times.
+
+(c) Diffusion, and thoughts on how to study that phenomenon in greater
+depth. This includes Gary's idea about the time it takes for the
+Gaussian heat kernel to hit the inflection point. Ideally, we may
+provide intuition for why hitting time is the same in the diffusive and
+in the standard model.
+
+This follows a line of reasoning that: diffusion, or its
+generalizations, may be an interesting
+property to study within graph networks. 
+\section{Hitting Times}
+In graph $G$, let $\huv$ denote the hitting time from $x$ to $y$. For
+now, fix $u=1$, and shorthand $h_v= h_{1v}$. $h_v$ satisfies:
+
+\begin{align}
+  h_v = 1 + \sum_{x \in N(v)} \frac{c_{vx}}{c_v} h_x 
+\end{align}
+or:
+\begin{align}
+  c_v h_v = c_v + \sum_{x \in N(v)} c_{vx} h_x.
+\end{align}
+This holds for all $v \not= (u=1)$. Boundary condition: $h_u = 0$.
+
+Then: this equation is equal to:
+
+\begin{align}
+  D \cdot h = \begin{pmatrix} c_1-C \\ c_2 \\ \ldots \\ c_n   \end{pmatrix}
+    + A \cdot h
+\end{align}
+or:
+\begin{align}
+  (D - A)h = \begin{pmatrix}c_1 - C \\ c_2 \\ \ldots \\ c_n
+  \end{pmatrix}
+\end{align}
+The $c_1-C$ term comes from: $D-A$ has image orthogonal to the all ones
+vector. $c_1-C$ is the unique possible entry in that vector. I do not
+know how to deduce $c_1-C$ term otherwise. 
+\begin{align}
+  h = L^\dag \begin{pmatrix} c_1 - C \\ \ldots \\ c_n \end{pmatrix}
+\end{align}
+plus a constant times the all ones vector. What the constant is, I do
+not know. (It is to ensure boundary condition is right.)
+\section{Commute Times}
+$C_{xy}$ is commute time. $=h_{xy} + h_{yx} = $ (when $x = 1, y = n$):
+
+\begin{align}
+  &
+  \begin{pmatrix} -1 , 0 , 0 , \ldots , 1\end{pmatrix} L^\dag
+    \begin{pmatrix} c_1 - C \\ \ldots\\ c_n \end{pmatrix}
+      \\
+  &+
+  \begin{pmatrix} c_1 , 0, 0 , \ldots , c_n-C\end{pmatrix} L^\dag
+    \begin{pmatrix} 1 & 0 & 0 & \ldots -1 \end{pmatrix}
+\end{align}
+
+\begin{align}
+  &
+  = \begin{pmatrix} -1 , 0 , 0 , \ldots , 1\end{pmatrix} L^\dag
+    \begin{pmatrix} c_1 - C \\ \ldots\\ c_n \end{pmatrix}
+      \\
+  &+
+  \begin{pmatrix} -1 , 0 , 0 , \ldots 1 \end{pmatrix} L^\dag
+    \begin{pmatrix} -c_1 &  & 0 & \ldots & C-c_n\end{pmatrix}
+\end{align}
+\begin{align}
+  &
+  = \begin{pmatrix} -1 , 0 , 0 , \ldots , -1\end{pmatrix} L^\dag
+    \begin{pmatrix} - C \\ \ldots\\ C \end{pmatrix}
+  \\
+  &= C \cdot \chi_{1n} L^\dag \chi_{1n}
+\end{align}

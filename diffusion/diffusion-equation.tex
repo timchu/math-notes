@@ -1,0 +1,58 @@
+\section{Diffusion Equation}
+The diffusion equation: $e^{-LD^{-1}t}$.
+
+\begin{align}
+= D^{1/2} e^{-D^{-1/2}L D^{-1/2} t} D^{-1/2}
+\end{align}
+
+So: If you want to find the discrete expected hitting time (from vertex
+    $1$), you would
+solve:
+
+\begin{align}
+h_y = 1 + \sum_{x \in N_{df}(y)} \textbf{df}_{xy} h_x
+\end{align}
+where $\textbf{df}_x$ is the diffisuion matrix's value at $xy$ for $y \not= 1$.
+
+or:
+
+\[(I - {df})h = 1\]
+
+or:
+
+\[(I - D^{1/2} e^{-\tilde{L}t} D^{-1/2}) h = 1\]
+
+or: 
+
+\begin{align}
+D - (D^{1/2} e^{-\tilde{L}t} D^{1/2}) h =
+  \begin{pmatrix} c_1 - C \\ c_2
+  \\ \ldots \\ c_n  \end{pmatrix}
+\end{align}
+Here, $c$ is the degree sequence, and $C$ is the total sum of the
+degrees (or $2m$).
+
+Commute time is:
+\begin{align}
+2m \chi_{xy} (D - (D^{1/2} e^{-\tilde{L}t} D^{1/2}) h) \chi_{xy}
+\end{align}
+
+I moved a little fast here, so confusions with my math may be errors
+with my math. Here, $\tilde{L} := D^{-1/2}LD^{-1/2}$.
+
+Thus, it may be of interest to examine the eigenvectors of the
+discretized-time, continuous-walk matrix, or:
+
+\begin{align}
+D - D^{1/2} e^{-\tilde{L}} D^{1/2}
+\end{align}
+
+However, this seems to always be a Laplacian: $I - df$ should have
+positive diagonals, as the random walk prescribed by $df$ doesn't stay in the same place with more
+than probability $1$. Right mulltiplying by $D$ doesn't change the
+positivity of diagonals. That is ,we're just replacing one transition
+matrix (A) for another (the lazy random walk).
+
+The above matrix also has all ones as eigenvector. So no new class of
+matrices is generated in this fashion. But maybe this matrix is still
+useful for finding distances between two points in a distribution....
