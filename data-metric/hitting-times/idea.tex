@@ -1,0 +1,79 @@
+\input{header}
+\begin{document}
+Recall that hitting times satisfy:
+
+\[ H(a,b) = 1 + \frac{1}{d_a} H(N(A), b). \]
+
+Here, $N(A)$ is th neighbor set of $A$, and $H(N(A), b)$ is the
+sum over $x \in N(A)$ of $H(x, b)$. 
+
+\begin{corollary}
+  \[ H(a, b) > \min_{N(A)} H(N(A), b) \]
+\end{corollary}
+
+\noindent \textbf{Proposal:} Use level sets of $H(_, a)$ to
+categorize distance to $a$. Ignore non-symmetry for now.
+
+\begin{lemma}\label{lem:hit} The hitting time from $i$ to $a$ is 
+  \[ (\chi_{i}  - \chi_{a})^T L^\dag (d - m\chi_a) \]
+\end{lemma}
+
+\section{Hitting Times lead to a Coherent Similarity}
+We propose that $a$ and $b$ are more similar than $a$ and $c$, if
+$H(b, a) > H(c, a)$. Recall that the level sets of similarity
+radiating out of $a$ satisfy: $H(b, a) > \min_{N(b)} H(N(b), a)$.
+This avoids a problem implicity in effective resistance
+similarity.
+
+Denote $a \sim b := H(b,a)$, which is the similarity between $a$
+and $b$ (non-symmetric).  Right now, because hitting times denote
+'level sets', we are only allowed to compare $a \sim b$ and $a
+\sim c$ \tim{whatever this means}. I would like to check that
+our similarity measure must be 'coherent': that is, 
+\[ a \sim b > a \sim c \]
+\[ b \sim c > b \sim a \]
+\[ c \sim a > c \sim b \]
+is not possible. \tim{Explain why this is important, or show that
+it's not the right measure.}
+
+To prove this, we observe 
+\[ (a \sim b) + (b \sim c) + (c \sim a) \]
+and note that it equals:
+\[ (\chi_{b}  - \chi_{a})^T L^\dag (d - m\chi_a)
++ (\chi_{c}  - \chi_{b})^T L^\dag (d - m\chi_b)
++ (\chi_{a}  - \chi_{c})^T L^\dag (d - m\chi_c) \]
+\[ =  m\left(\sum_{x \in abc}  \chi_x^T L^\dag \chi_x\right) -
+m\left(\chi_b^T L^\dag
+\chi_a + \chi_c^T L^\dag \chi_b + \chi_a^T L^{\dag} \chi_c \right) \]
+
+which is equal to 
+\[ a \sim c + c \sim b + b \sim a. \]
+
+\section{Review on Hitting Times}
+Proof of Lemma~\ref{lem:hit}. Recall that $H(a,b)$ (hitting time starting at $a$ to $b$)
+satisfies:
+
+For fixed $b$:
+\begin{align}
+& d_a h(a,b) = d_a + h(N(A), b)
+\end{align}
+For all $a \not = b$, and boundary condition $b = 0$.
+\begin{align}
+  & D_{-b}h_{-b} = d_{-b} + A_{-b}h_{-b}
+\\
+  & \Rightarrow D_{-b}h_{-b}  - A_{-b}h_{-b} = d_{-b}
+\\
+  & \Rightarrow L_{-b}h_{-b}= d_{-b}
+\\
+  & \Rightarrow Lh = d - \sum_v d_v \chi_b
+\\
+  & \Rightarrow h = L^{\dag} \left(d - m \chi_b\right) -
+  \textbf{1}(\chi_b^T L^{\dag} (d - m\chi_b))
+\\
+  & \Rightarrow h(a,b) = (\chi_a - \chi_b)^T L^{\dag} \left(d - m \chi_b\right)
+\\
+  & \Rightarrow h(a,b) +h(b,a)= 2m (\chi_a - \chi_b)^T L^\dag
+  (\chi_a - \chi_b)
+\end{align}
+
+\end{document}

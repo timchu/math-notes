@@ -1,0 +1,28 @@
+In this note, we how heat on vertices of a graph cool when
+one fixed vertex is a heat sink.
+We propose using the long-term cooling on a graph with one vertex
+as a heat-sink, as a measure
+of that vertex's centrality in the graph.
+Intuitively, a sink at a central graph
+vertex may cause heat to rush
+out of the graph faster than a sink at a non-central
+vertex.
+
+We can also compute a $k$-way
+partitioning of the graph, by picking the $k$ vertices that drain
+heat the fastest out of a graph. Let these $k$ vertices be
+designated as exemlars, and let
+each vertex in the graph be assigned to the
+exemplar that absorbed most its heat.
+This notion of dissipating heat quickly in a graph can be
+extended to edges, where we can find which edges dissipate heat
+quickly. 
+
+The hope is that this notion admits nice theorems, rather than
+just heuristical math results.
+
+%% # In this note, we examine the use of heat dissipation as a
+%% # centrality measure, combining both Euclidean distance and
+%% # many-paths formulation. We suspect that the heat dissipation is
+%% # once again locally bottlenecked, but due to lack of certainty we
+%% # forge bravely onwards in our exploration.

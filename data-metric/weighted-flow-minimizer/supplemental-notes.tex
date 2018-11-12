@@ -1,0 +1,59 @@
+Intuitively, suppose we have some kind of manifold, surface, or
+graph. Suppose I have two points $A$ and $B$. I would like some
+notion of how well connected $A$ and $B$ are, with the following
+caveats:
+
+Becuase this method should work for geometric shapes, there must
+be some idea of asking how many paths with width $w$, where $w$
+scales with the distance from any point, there are between $A$
+and $B$. In particular, you probably want to take some kind of
+weighted integral between $A$ and $B$, of the volume of some
+cross-section. Here, the weight should either scale with the
+distance to either $A$ or $B$, or with respect to the volume of the
+ball covered so far. 
+
+That seems like a reasonable definition for a distribution. Here,
+     we implicitly assume that the underlying Euclidean distance
+     must matter.
+
+Therefore, we simply integrate:
+
+\[
+  \int_{0}^{d(A, B)/2} p(r)^{-1} dr
+\]
+where $d$ is some distance (in this case the Euclidean distance),
+and $p(r)$ is the integral of the probability denstiy function
+along the $r$ radius ball.
+\tim{There are a ton of problems with this: a discontinuous
+  distribution can still have non-infinite measure here.}
+
+Try number $2$: lets use the geodesic distance $d$, to measure
+the lengtho f a path. Note that this doesn't measure connectivity
+between two points, but it seems like a (moderately reasonable)
+  measure of distance.
+
+Then we take:
+
+\[ \int_0^{d(A,B)....\]
+
+
+
+An alternative is:  do you want to measure
+Now the big question is:
+
+
+
+$A$ and $B$ in a graph are considered close if there are many
+paths from $A$ to $B$. Usually, this is captured by the idea of
+electric flow. However, electric flow suffers from the feature
+that (on geometric graphs) it is locally bottlenecked.
+That is,
+almost all the effective resistance from $A$ to $B$ comes from
+local neighborhoods around $A$ and $B$.
+
+There are two solutions to this: first, we can try and augment
+the graph so that Effective Resistance is not locally
+bottlenecked. I haven't explored this issue in depth, and perhaps
+it is promising.
+
+The second issue, the topic of this 

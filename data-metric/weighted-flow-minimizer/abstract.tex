@@ -1,0 +1,19 @@
+$A$ and $B$ in a graph are considered close if there are many
+paths from $A$ to $B$. Usually, this is captured by the idea of
+electric flow. However, electric flow suffers from the feature
+that (on geometric graphs) it is locally bottlenecked.
+That is,
+almost all the effective resistance from $A$ to $B$ comes from
+local neighborhoods around $A$ and $B$.
+
+In this paper, we consider a measure on a flow from $A$ to $B$,
+weighted by shortest path. That is, if we suspect our graph
+has dimension $d$, then we weight the edge with the shortest path
+to that edge from either of the endpoints, weighted by dimension.
+
+This captures the following intuition: If there are $k$ parallel
+paths from $A$ to $B$, then the....
+
+Unfortunately, this is now dimensionally sensitive, which is not
+ideal for general graphs that have no strong notion of doubling
+dimension.

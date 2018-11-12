@@ -1,0 +1,29 @@
+\begin{abstract}
+Hitting times of random walks are widely studied asymmetric measures in
+combinatorics and data mining. The most common symmetrization of
+hitting times are known as commute times, proportional to the
+effective resistance. It is known that commute times have
+properties that are considered undesirable in large scale machine
+learning.  For example, a ball of radius $r$ in the commute-time
+metric can be disconnected.
+
+In this paper, we propose an alternative symmetrization of
+hitting times with the property that any ball in this
+symmetrization is identical to some ball in the original hitting
+time measure. This ensures that balls form connected components,
+and captures the desirable property that points $A$ and $C$ are
+considered closer than $A$ and $B$ if $A$ and $C$ are in the same
+dense cluster. 
+This symmterized notion of hitting times has desirable properties
+when computing Voronoi cells, including the property that any
+Voronoi diagram with two sites is connected.
+
+It is known that for large-scale random geometric graphs, the
+hitting times capture only local properties of the graph: $H(a,b)
+\sim \frac{1}{d_b}$ as the number of vertices get large.
+Critically, our symmetrization of hitting times avoids this
+problem, and captures the global structure of the graph.  
+Our analysis and construction is not restricted to only hitting time
+measures, and we will present criteria for when any measure can
+be symmetrized in this fashion.
+\end{abstract}

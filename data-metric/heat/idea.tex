@@ -1,0 +1,64 @@
+The idea: measure centrality of a vertex $v$ as follows: given a
+uniform distribution of heat in a graph, how quickly does heat
+dissipate into a hole?
+
+At the beginning of the time process, this is locally
+bottlenecked. However, as time goes on, the hope is that
+eventually the more global properties of the graph come into
+play. Alternateively, a question can be how quickly heat spreads
+out of a single point.
+
+Here, there are many measures for how quickly heat dissipates.
+Given the timeseries of heat on the graph
+\begin{enumerate}
+\item What is the integral of the heat?
+\item What is a back-loaded integral of the heat? (Or
+    front-loaded)
+\item How fast does the heat dissipate at the onset? (Entirely
+    local)
+\item  What time $t$ does the total heat on the graph undershoot
+$\eps$? (total heat on the graph having some measure or another).
+\begin{itemize}
+\item What happens as $\eps \rightarrow \infty$?
+\end{itemize}
+\item How quickly does the graph lose half its total heat?
+\end{enumerate}
+To simulate the heat sink, we start with a stable distribution on
+heat over all the vertices. Then, we perform a lazy random walk
+with hole. In particular, suppose the adjacency matrix is $A$ (so
+    the probability transition matrix is $AD^{-1}$).
+However, suppose we have a sink at point $P$. That is, the
+$P^{th}$ row and column of $A$ are all zero. Define this matrix as
+$A_{-p}$. Now the transition matrix is $A_{-p}D^{-1}$.
+
+Let's simulate a lazy random walk. Then the transition matrix for
+one timestep is:
+$\lim_{a \rightarrow 0} ((1-a)I + a(A_{-p}D^{-1}) )^a$, or 
+
+\[ e^{-L_{-p}D^{-1}} = D^{1/2} e^{\overline{L}} D^{-1/2}. \]
+
+Here, $\overline{L} = D^{-1/2} L D^{-1/2}$.
+We now seek to count the total heat in the graph. Unfortunately,
+most obvious measures ($l_1$, $l_\infty$, etc.) are too hard to
+  count. Therefore, I'm going to take the easiest measure of heat
+  vector $h$ that I can, which will be:
+
+  \[ h^T D^{-1} h. \]
+
+Now the heat value becomes:
+
+\[ \textbf{1} e^{-2L_{-p}t} \textbf{1}. \]
+
+What we would like to do, is have an ordering on vertices $p$ as
+$t \rightarrow \infty$ for when this value is smallest as $t$
+gets high. That is, the behavior of the heat in the graph as time
+grows large. Perhaps this is also not that interesting though. I
+think getting a half life might be more interesting than this.
+
+Now the question is: does the value of this number, in the limit,
+depend mostly on the degree of $d$, or is it dependent on
+other global factors of the graph?
+
+As $t$ gets large, this should depend exclusively on the largest
+eigenvalue of $D^{-1/2}L_{-p}D^{-1/2}$.
+

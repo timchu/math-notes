@@ -1,0 +1,34 @@
+\section{Modeling Heat in a Graph  with Cold Sinks}
+We seek to model heat in a graph with cold sinks,
+as time goes to infinity. Suppose we have graph $G$ with cold
+sink at vertex $p$.
+The heat $h$ at time $t$ given starting heats $h_0$ (at all
+    points excluidng $p$) would be:
+
+\[e^{t L_{-p} D^{-1}} h_0,\]
+where $L_{-p}$ denotes the Laplacian with the $p^{th}$ row
+and column removed. Note that
+\[h = D^{1/2} e^{t D^{-1/2}L_{-p}D^{-1/2}} D^{-1/2}
+h_0. \]
+It appears to Tim Chu as if the behavior of this vector under any
+measure as $t \rightarrow
+\infty$, is determined by the smallest eigenvalue of 
+
+\[ D^{-1/2} L_{-p} D^{-1/2}. \]
+This is because the heat in the long term should be
+entirely governed by $e^{-\lambda_1 t}$, where $\lambda_1$ is the
+smallest eigenvalue of the normalized Laplacian. 
+
+This eigenvalue
+should govern the long-term heat as
+long as $D^{-1/2} h_0$ has some nontrivial portion of $v_1$ (the
+eigenvector corresponding to the smallest eigenvalue of the
+normalized Laplacian). 
+The long-term
+heat in the graph under most measures is smallest when
+$\lambda_1$ is large.  
+An identical problem: given a
+random walk, what vertex has the smallest long-term probability
+that a random walk avoids it?
+
+

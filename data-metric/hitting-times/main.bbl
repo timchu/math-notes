@@ -1,0 +1,14 @@
+\begin{thebibliography}{VLRH14}
+
+\bibitem[CLT08]{Chen08}
+Mo~Chen, Jianzhuang Liu, and Xiaoou Tang.
+\newblock Clustering via random walk hitting time on directed graphs.
+\newblock In {\em Proceedings of the 23rd National Conference on Artificial
+  Intelligence - Volume 2}, AAAI'08, pages 616--621. AAAI Press, 2008.
+
+\bibitem[VLRH14]{VL14}
+Ulrike Von~Luxburg, Agnes Radl, and Matthias Hein.
+\newblock Hitting and commute times in large random neighborhood graphs.
+\newblock {\em J. Mach. Learn. Res.}, 15(1):1751--1798, January 2014.
+
+\end{thebibliography}

@@ -1,0 +1,82 @@
+Expected hitting times are widely used measures in combinatorics and data
+mining~\cite{Chen08}. The work of Von Luxburg et.
+al.~\cite{VL14} showed that hitting times are largely meaningless
+measures on large-scale, random geometric graphs such as the
+$k$-NN graphs, $\eps$-graphs, and Gaussian similarity graphs.
+They proved that hitting time from $a$ to
+$b$ captures only local information of a
+graph, as it converges to $\frac{1}{d_b}$.
+
+Since hitting times are asymmetric, often it can be more useful
+to deal with a symmetric measure.
+Commute times are the most popular symmetrization of hitting
+times, defined as the expected time to travel from vertex $a$ to
+$b$ and back again. Commute times are known to be scaled
+versions of effective resistance, and also capture few global
+properties of a random geometric graph: commute times converge to
+$\frac{1}{d_b} + \frac{1}{d_a}$ in $\eps$-graphs and $k$-NN
+graphs~\cite{VL14}. Additionally, balls of radius $r$ measured in
+commute time are not necessarily connected, which makes commute
+times an unsuitable similarity measure in some machine learning
+settings.
+
+The key result of this paper is to generate a new symmetrization
+of
+hitting times that captures the global properties of the
+graph, avoiding Von Luxburg's problem. 
+Namely, we build a symmetric
+function $f$ such that $f(a,b) > f(c,b)$ if and only if the
+hitting time from $a$ to $b$ is larger than the hitting time from
+$c$ to $b$. This way, $f$ captures the \textit{partial ordering}
+of hitting times given a fixed destination, rather than concern
+itself with the actual value of the hitting time. In this paper,
+       we show:
+\begin{enumerate}
+\item Function $f$ exists,
+\item $f$ avoids von Luxburg's general problem with hitting
+time, and computes global properties of underlying graph $G$
+\item Balls centered at point $p$ with radius
+$r$
+(where this ball is defined as $\{x \in V(G): f(x, p) \leq r\}$) are connected, and
+\item  The Voronoi cells of $f$ are the same for any
+function $f$ respecting the partial ordering of hitting times,
+         and show that when there are two Voronoi sites then each
+         Voronoi cell is connected.
+\end{enumerate}
+The last property may make our symmetrized hitting time $f$
+suitable for bisecting $k$-means, as Voronoi cell computation is
+an important primitive in $k$-means clustering. These Voronoi cells can be
+computed without explicit access to $f$.  
+This symmetric hitting time $f$
+captures the additional desirable feature that two points $A$ and
+$B$ are considered closer if there are many paths from $A$ to
+$B$.
+
+\tim{More things: Explicitly construct $f$ rather than
+  implicitly}
+\tim{Maybe explicit $f$ will be nice}
+\tim{Random walks with resets? Other kind sof random walks?}
+\tim{Half live?}
+\subsection{Preliminaries}
+\begin{definition} The hitting time $H_G(a,b)$ from vertex $a$ to
+$b$ in graph $G$ is the expected time it takes for a random walk
+from $a$ to hit $b$. It can be alternatively defined as follows:
+
+\[ H_G(a,b) \defeq (\chi_a - \chi_b)^T L_G^\dag (\overline{d} -
+    \chi_b).\]
+
+Here, $\chi_a$ is the indicator vector for vertex $a$, and
+$\overline{d} \in \mathbb{R}^{|V(G)|}$ is the
+vector with $\overline{d}_i$ equal to the degree of vertex $i$.
+\end{definition}
+%% 
+%% Hitting times have two desirable properties which we
+%% seek to exploit in this paper: if $A$ and $C$ are
+%% connected by many disjoint paths of This symmetrization
+%% connected by only one path of length $l$, then $H(C, A) \leq
+%% H(B, A)$. Moreover, the set of vertices $v$ such that $H(v, A)
+%% \leq t$ for any threshold $t$ is connected. This
+%% means any ball (radius measured using hitting times to $A$) is
+%% connected and contains $A$. We use these properties as the
+%% starting point in generating our symmetrization of hitting
+%% times.

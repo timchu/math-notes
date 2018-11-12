@@ -1,0 +1,22 @@
+\section{Problem with this approach} The hitting time metric I described does not have Rayleigh
+property, which seems very important. If $A$ and $B$ are
+connected by many paths, and $A$ and $C$ are not, but then I
+decide to hang a ton of other paths onto $B$ leading away from
+$A$, then $A$ and $B$
+become less connected.
+
+Normalizing by degree doesn't necessarily help (or does it?).
+Does this concept of hitting times work for $d$-regular graphs?
+
+Maybe this works fine for $d$ regular graphs. That is, hitting
+times to a destination may measure how many paths there are to
+that destination. But even then, I think I can build
+counterexamples. For instance, if I hang one paths onto $B$ that
+lead to big chunks of the graph far from $A$, that's makes $B$
+far from $A$. Meanwhile, if I hung one path leading to a small
+tightly connected cluster away from $A$, that makes $B$ closer to
+$A$. Is that a bad property, or maybe that's good?
+
+But for non $d$-regular graphs, I'm at a loss. It seems like I'll
+want to do something other than hitting time, or even
+degree-normalized hitting time. 
