@@ -20,8 +20,7 @@ commute time are not necessarily connected, which makes commute
 times an unsuitable similarity measure in some machine learning
 settings.
 
-The key result of this paper is to generate a new symmetrization
-of
+The key result of this paper is a new symmetrization of
 hitting times that captures the global properties of the
 graph, avoiding Von Luxburg's problem. 
 Namely, we build a symmetric
@@ -62,8 +61,8 @@ $B$.
 $b$ in graph $G$ is the expected time it takes for a random walk
 from $a$ to hit $b$. It can be alternatively defined as follows:
 
-\[ H_G(a,b) \defeq (\chi_a - \chi_b)^T L_G^\dag (\overline{d} -
-    \chi_b).\]
+\[ H_G(a,b) \defeq (\chi_a - \chi_b)^T L_G^\dag (2m \chi_b
+    -\overline{d}).\]
 
 Here, $\chi_a$ is the indicator vector for vertex $a$, and
 $\overline{d} \in \mathbb{R}^{|V(G)|}$ is the

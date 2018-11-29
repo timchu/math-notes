@@ -1,0 +1,79 @@
+In this paper, we list out a number of proposals for metrics on
+graphs. We also sketch out impossibility results. By default,
+edge weights are conductances and not resistances. The properties
+we would like to have are:
+
+\begin{enumerate}
+\item A metric ball is connected. This is of use in machine
+learning, when the underlying graph is local (or at least
+semi-local).
+\item If our graph is a line: $A-x$, $x-B$, then $A$ and $B$
+should have some distance between them. If $x$ is connected to a
+large graph, but $A$ is connected only to $x$ and $B$ only to
+$x$, then either $A$ and $B$ get closer, or $A$ and $B$ stay the
+same distance.
+\item Rayleigh monotonicity property.
+\item A model that has some kind of physical or simple
+mathematical meaning. We speculate such a model has more
+interesting mathematics underneath.
+\end{enumerate}
+
+We examine the use of htiting times, commute times, voltages,
+$p$-voltages, maximum flow, low conductance cuts, shortest paths, and more. The
+number of ways we can approach this problem is manifold:
+\begin{enumerate}
+\item Determine when a vertex is central.
+\item Determine when a point $x$ is closer to $A$ than to $B$.
+\item Build balls to fixed point $A$, and then create a
+symmetrized measure from there. (Dijkstra, doing all pairs
+    shortest path at once).
+\item Build a measure that is some function of its neighbors.
+\item Make a differential equation that dissipates things faster
+than heat (like if there were positively charged protons at
+    every vertex or something).
+\end{enumerate}
+It seems like I would need an alternative strategy. Level sets
+and low conductance cuts don't quite fit into this mold.
+
+It seems as if I would need to be very creative, or have
+inspiration from some other sources, (crystallography,
+    glass-making, gravitation, strong and weak forces, Maxwell,
+    fluid mechanics, terrestrial mechanics, microbial action,
+    neurons, humanities, or more) because many machine learners
+have undoubtedly looked at this problem. Thus far, I have also
+been -- unnecessarily -- negative on things like spectral
+clusering or diffusion maps, and it seems worthwhile to look into
+that line of work and their limitations.
+Here's a few approaches that Tim Chu has tried, doesn't believe
+them to work, and will list out why they don't work:
+\begin{enumerate}
+\item Heat half lives
+\item Voltage level sets
+\item Time weighted heat flow.
+\item New symmetrization of heats.
+\item Laplacian powers for Effective Resistance. (?)
+\item Allowing the net flow at the start and end point to be distributed, at
+some cost.
+\item ????
+\end{enumerate}
+Some questions:
+\begin{enumerate}
+\item It would seem as if commute times should fail the $A-x$
+$x-B$ test but they don't.
+\end{enumerate}
+ 
+%What I'm really interested in, is level sets based on voltage.
+%Can a level set based on voltages give any insight about the
+%graph? This is a function $f : G, V(G), V(G) \Rightarrow
+%P(P(\R)}$. Or: take a graph, then two vertices, and generate a
+%collection of nested sets.
+%
+%Gary suggests looking at the measure: testing whether $x$ is
+%closer to $A$ or $B$, by determining whether the random walk hits
+%$A$ or $B$ first. Intuitively, this should be entirely local.
+%However, I haven't worked out the mathematics here.
+%
+%Does conductance cut determine how far apart two items are? Am I
+%cutting the resistance or conductance? Does electrical flow in a
+%solid work the same way as if a geometric graph was laid down on
+%the the surface? Honestly probably not.

@@ -1,0 +1,26 @@
+First, we prove that $L^{1/2}$ is a Laplacian.
+
+\[ L = (D-A) \]
+\[ (D-A)^{1/2} = D^{1/4} (1-\hat{A})^{1/2} D^{1/4} \]
+Now we sub $\hat{A} = A$ and ignore the D terms.
+\[ (I-A)^{1/2} = I - A/2 - A^2/8 - A^3/16 - \ldots \]
+where $p(A)$ is an degree-weighted adjacency matrix for any
+positive polynomial $p$.  It's clear that $L^{1/2}$ has the same
+nullspace as $L$, and half powers are possible given the matrix
+is PSD. Thus, the result has negativ off-diagonals, positive
+diagonals (why?), and has the right null-space: so it must be
+Laplacian.
+ 
+The core insight is the following: 
+\[D^{-1/2} A D^{-1/2}\]
+is an adjacency matrix, and so is any power thereof.
+
+We seek to emulate this strategy for general matrices. For
+instance, suppose $M$ is an $l_1$ covariance matrix. Now we
+consider:
+\[ \widehat{A} = D_M^{-1/2} A_M D_M^{-1/2} \] where $A_M$ is the off-diagonal
+portion and $D_M$ is the on-diagonal portion.
+Particularly, we would like to test whether:
+\[ D_M^{1/2} (I-\widehat{A}^p)D_M^{1/2} \]  is an $l_1$
+covariance matrix.
+

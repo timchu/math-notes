@@ -1,0 +1,20 @@
+Suppose you have a point in a grid, that gets finer and finer.
+This is the fundamental operation: bisecting a quad (rather than
+    bisecting a line, as in effective resistance).
+
+The idea is: bisecting every quad should behave nicely with this
+measure.
+
+As an example, consider a uniform circular material. Consider $p$
+resistance in two dimensions, for any $p < 2$.  At radius $r$,
+each `edge' has flow $\frac{1}{r^{d-1}}$, so each flow has cost 
+$\frac{1}{r^{p(d-1)}}$. However, there are $r^{d-1}$ edges in a radial
+shell. So the total energy loss on a shell is $r^{(d-1)(1-p)}$.
+
+I would like this value to satisfy: 
+\[ \frac{\int_0^a r^{(d-1)(1-p)}dr}{\int_a^{2a} r^{(d-1)(1-p)} dr}\]
+to be constant.  As long as $(d-1)(1-p)+1 \not= 0$, then the
+fraction is:
+\[ \frac{a^{(d-1)(1-p)+1}]_0^r}{a^{(d-1)(1-p)+1}]_{r}^{2r}}\]
+So any $(d-1)(p-1) < 1$ satisfices, or $p < 1+\frac{1}{d-1}$.
+

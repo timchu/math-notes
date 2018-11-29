@@ -1,0 +1,70 @@
+\noindent Proposal: Random walks with dropoffs.
+
+\noindent Input: Graph $G$, starting point $s$, ending point $t$,
+  value $c(G)$.
+
+\noindent Schema: Walk from $s$. At each timestep and vertex (for some $x$):
+\begin{enumerate}
+\item Quit-or-walk with probability $1$.
+\item Walk with probability $d\cdot c$.
+\item Quit with probability $1-d\cdot c$.
+\end{enumerate}
+The number of times that an agent following this random walk is
+expected to be at point $t$ is:
+\[ \sum_{t = 0}^\infty \chi_t^T(c \cdot A)^t \chi_s \]
+or:
+\[ \chi_t^T (I - cA)^{-1} \chi_s. \]
+This is since the transition matrix is:
+$v \rightarrow c \cdot Av$.
+Assuming constant $c$, (so $c$ large compared to say, $d_max$), this
+has Rayleigh property. However, if $c$ is dependent on $d_max$
+then it's not so clear. Allegedly, this number increases with the
+number of edges (so similarity increases).
+
+\section{Further Directions}
+\subsection{Probability the Random Walk Ends}
+The probability a walk from $t$ hits $s$ at all is: (unproven):
+\[ \frac{\chi_t^T (I - cA)^{-1} \chi_s}
+{\chi_s^T (I - cA)^{-1} \chi_s}. \]
+\subsection{Similarity to Distance}
+Now define the metric: 
+$(\chi_i - \chi_j)^T (I-cA)^{-1} (\chi_i - \chi_j)^T$. I would
+love this to be decreasing in $A$, because distances should
+follow Rayleigh. However, this is not the case. If I have a long
+thin line starting from $s$ and ending at $t$, adding two thick
+edges to the ends will drastically increases $\chi_s^T (I - cA)^{-1}
+\chi_s$ but not $\chi_s^T (I-cA)^{-1} \chi_t$.
+
+We may also consider effective resistance with the matrix:
+\[ (I - cA)^{-1} \]
+which bears similarity to the Laplacian. I suspect that the
+effective resistance using this matrix will be connected. I
+suspect this will also have the Rayleigh property, as adding an
+edge to $A$ (without increasing $c$) will INCREASE (in Loewner
+ordering) the matrix $(I -cA)^{-1}$. (what.) Since this is a rank
+$2$ update.
+
+%Let's calculate the probability the random walk finishes. I would
+%like to do this without striking a row and column....
+%
+%
+%Note: in the following, we are computing the expected number of times you hit the
+%target in a random walk. Which... is not exactly the same as the
+%probability the walk finishes....
+%
+%The transition matrix is:
+%$v \rightarrow c \cdot Av$. Probability the walk finishes is:
+%\[ \sum_{t = 0}^\infty \chi_t(c \cdot A)^t \chi_s \]
+%or:
+%\[ \chi_t (I - cA)^{-1} \chi_s. \]
+%Here, we assume that $c < \frac{1}{d}$ so the inverse always
+%exists. This should have Rayleigh property (adding an edge is the
+%    same as rerouting a quitter).
+%Balls
+%should also be connected (the probability you finish is strictly
+%    less than the probability you finish at the time step plus
+%    $1$).
+%
+%This should have a lot of problems: $c$ needs to be chosen in
+%advance. (This measure happens to be symmetric). The denser you
+%are the better chance you have of finishing.

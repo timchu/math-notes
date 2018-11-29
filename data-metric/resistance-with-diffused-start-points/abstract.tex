@@ -1,0 +1,12 @@
+To find distance between $s$ and $t$: rather than have flow all
+come out of $s$, we allow
+flows to come out of a suite of vertices, where there's some
+penalty for having the flow come out of a vertex that isn't $s$.
+Likewise, flows can have sinks at vertices that aren't $t$, at
+some cost.
+
+If we use effective resistance as our metric hereafter, this
+should be some kind of QCQP. Minimizing some electrical flow
+satisfying some demands, plus the penalty for those demands. I
+don't actually know if this is a QCQP but it feels like it could
+be.
