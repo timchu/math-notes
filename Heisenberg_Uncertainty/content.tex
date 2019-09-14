@@ -1,0 +1,75 @@
+In this note, we seek to prove Heisenberg's Uncertainty Principle
+from first principles. Our primary tool is an extension of
+Cauchy, which is known as the Hardy Inequality.
+
+\begin{align}
+\int_{\R^3} |\nabla \psi(x)|^2 \geq \frac{1}{4}\int_{R^3} |\psi(x)|^2/|x|^2
+\end{align}
+\begin{remark} Note that this is a 3 dimensional version of
+Hardy's inequality, and I'm not entirely sure whether the
+$\frac{1}{4}$ constant is tight. I also do not know how this
+follows from Hardy's inequality on one dimensions, or if an easy
+proof of the 3 dimensional case exists.
+\end{remark}
+Armed with this, we now consider the formulation of quantum
+kinetic energy:
+\begin{align}
+KE := \frac{h^2}{2m}\int_{\R^3} |\nabla \psi(x)|^2.
+\end{align}
+Here, $h$ represents the Planck Constant, and $m$ is the mass of 
+the particle. $\psi(x)^2$ is the probability distribution of the
+particle at point $x$. This formulation of Kinetic energy is an
+axiom.
+\begin{remark} Is this formula the kinetic energy in the absence
+of some force? Otherwise I think it should have some kind of
+potential operator in it
+\end{remark}
+Now the standard deviation of the momentum of a particle is:
+\begin{align}
+&\sigma(p) := \sqrt{2 m\cdot KE}
+\\
+&= h\left(\int_{\R^3} |\nabla \psi(x)|^2\right)^{1/2}.
+\end{align}
+\begin{remark}
+Why is this the formula for momentum? And what is the momentum,
+    without taking standard deviation?
+\end{remark}
+Thus: we can assert:
+\begin{align}
+& \left(h\int_{\R^3} |\nabla \psi(x)|^2 \right)^{1/2} 
+\left(\int_{\R^3} |x|^2 |\psi(x)|^2 \right)^{1/2}
+  \\
+& \geq \frac{h}{2}\left(\int_{\R^3}
+    |\psi(x)|^2/|x|^2\right)^{1/2}
+\left(\int_{\R^3} |x|^2 |\psi(x)|^2 \right)^{1/2}
+  \\
+& \geq \frac{h}{2} \int_{\R^3} |\psi(x)|^2
+\\
+& = h/2
+\end{align}
+where the first inequality is from Hardy, the second is from
+Cauchy, and the final equality follows since $\psi(x)^2$ is a
+probability distribution, and thus has integral equal to 1 over
+the domain.
+\begin{remark} Follow up question: When are the inequalities in
+both Hardy and Cauchy tight? Are they ever?
+\end{remark}
+\begin{remark} Momentum is usually a function of time, so where
+did that go in this equation? Schroedinger's equation promises an
+answer (but there, they have some imaginary number term that is
+difficult for me to comprehend). Furthermore, what kind of
+distribution is stable under Schroedinger's equation?
+I suspect that $|\psi(x)|$ is the complex norm of $\psi$, and is
+one reason they always deal with $\psi^2$ instead of $\psi$
+directly.
+\end{remark}
+\begin{remark}
+Are there any applications of this to graph theory? This proof
+suggests that the Laplacian of the grid, with mass-weights of
+$\frac{1}{|x|^2}$, has constant Hardy coefficient and thus
+constant eigenvalue (here $x$ is the position). This would imply
+that this graph is an 'expander' of sorts, despite looking
+nothing like a classical expander.
+\end{remark}
+
+

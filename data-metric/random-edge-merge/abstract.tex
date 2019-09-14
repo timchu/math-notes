@@ -1,0 +1,19 @@
+Given a graph, we merge edge $e$ with probability proportional to
+$f(w_e)$. Then we see if $a$ and $b$ are connected. The idea is
+that each edge represents some probability they are in the same
+cluser. (Maybe clustering is not the right idea.)
+
+This clearly captures Rayleigh, but it is not clear if it also
+runs into local bottlenecking problems.
+
+If the graph is unit, then suppose each edge is red with
+probability $p$. Let $p'$ be the value such that $a$ and $b$
+are connected by red edges with probability $> 1/2$,
+if each edge is red with probability $p'$. Then we can say $a$
+and $b$ are close if $p'$ is small, and $a$ and $b$ are far if
+$p'$ is big.
+
+Unfortunately I don't know what this value is on a grid, even if
+we restrict to up-right paths. Maybe this is the starting point
+for an exploration? But this seems to deal much more with
+percolation theory.

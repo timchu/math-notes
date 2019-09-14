@@ -1,0 +1,145 @@
+\input{header}
+\begin{document}
+
+This note contains an observation about characters in
+representation theory, and conjectures a link between this, QM,
+and the theory of graph laplacians or PSD matrices in general.
+
+Section~\ref{sec:summary} contains a summary of Fulton Harris chapters $1$ and $2$,
+according to Tim Chu (Orthogonality of Characters via dimension
+of center of Tensors, which occurs via Schur's lemma and the idea
+of $G$-linear maps).
+
+\subsection{Character Tables as Eigenvectors?}
+Character tables are orthogonal, and it turns out that
+$(P^{*}DP)_{ij}$ ($D$ diagonal with elements $a_i$, corresponding
+to characters of representation $A$) is equal to: 
+
+(a) the size of $(V_i \tensor A \tensor V_j^{*})_G$, AKA the size
+of the center of $(V_i \tensor A \tensor V_j^{*})$ 
+
+(b) the $V_i$ term in the irreducible decomposition of $(A
+\tensor V_j)$.
+
+Here, $P$ is the unitary matrix with elements $\chi_{V_j}(C_i)$,
+as element $ij$, where $V_j$ is the $j^{th}$ irreducible
+representation of $G$ and $C_i$ is the $i^{th}$ conjugacy class
+for the group $g$. The enumeration of $C$ and $V$ is arbitrary.
+
+Here, $P^{*}DP$ is a matrix with eigenvectors equal to the
+columns of $P$, with eigenvalues $D$ (at least in the case of
+reals. What happens for complex numbers?) 
+
+\section{Reason For Considering This}
+The reason I bring this up is that:
+
+(a) Magically you get unitary matrices from representation
+characters, just
+like you get unitary matrices when doing an eigen-decomposition
+of any PSD matrix.
+
+(b) Fourier series can be interpreted as projecting onto the
+eigenspectrum of the discrete Laplacian, and Fourier transforms
+can be interpreted(-ish) as projections onto the continuous
+circle (a compact set, which may be important). However,
+imaginary numbers don't necessarily come up here -- you can get
+away with decompositions into sine and cosine. (This is sorta why
+group representations may be fundamentally different than Laplacian eigenvectors --
+most Laplacians don't have complex eigenvectors.)
+
+(c) Fourier series can also be interpreted as projecting onto the
+character of the cyclic group.
+
+\vspace{3 mm}
+Some possible other throwaway reasons for considering this
+include: 
+
+(d) Magically, there is a unique Hermetian inner product for any
+irreducible representation $V$, such that the representation of all
+group elements (in $V$) are unitary matrices under this inner product (Last exercise of Chp 1 in Fulton
+Harris). This is something I haven't looked into yet.
+
+(e) Unitary matrices appear in Quantum Mechanics, and orthonormal
+matrices appear when decomposing any positive semi-definite
+matrix. (Unitary appears when decomposing a Hermitian matrix.)
+
+(f) There exists an extension of Fourier analysis to non-abelian
+groups, via character theory. Probably there is some 'Fourier analysis of semi-simple
+Abelian groups' too or something (used in Terry Tao's proof of
+the Froebenius Kernel Theorem, some theorem in which characters
+are essential but I don't know what it says).
+
+(g) PSD matrices appear all over TCS, and appear in the study of
+negative type distances.
+
+\section{Orthogonality of Characters Note}\label{sec:summary}
+For proof on the orthogonality of characters, refer to
+Fulton-Harris. The main idea is that inner products in characters
+of $V$ and $W$
+is equal to: the dimension of the fixed points of $V^{*} \tensor W$
+under $G$, aka the \textbf{center} of $G$ in $V^{*} \tensor W$
+(for any representations $V$ and $W$). (Why is inner product
+equal to the center's dimension? Why does the center's dimension
+imply orthogonality?)
+
+\textbf{A note on characters, and proof that the center is
+trivial for $V^{*} \tensor W$ on irreducible non-iso $V$ and $W$}
+
+Let $g_{V^{*}}$ have eigenvalues $\alpha_1 \ldots \alpha_m$, and
+$g_{W}$ have eigenvalues $\beta_1 \ldots \beta_n$. Then $g_{V^{*}
+\tensor W}$ has eigenvalues $\alpha_i \beta_j$, whose sum is
+$(\sum_{i} \alpha_i)(\sum_j \beta_j)$. This implies that
+\[ \chi_{V^{*} \tensor W}(g) = \chi_{V^{*}}(g) \chi_{W}(g). \]
+However, the center of $V^{*} \tensor W$ is equal to the
+dimension of the space of $G$-linear maps (maps
+$\psi: V \rightarrow W$ such that $\psi(g_V \_) = g_W \psi(\_)$) from $V$ to $W$, which by Schur's
+lemma is $0$ if $V$ and $W$ are irreducible and non-isomorhpic,
+and $1$ otherwise (up to some scaling, which is important but
+which I'm too lazy to think about).
+
+\textbf{Schur's Lemma:}
+
+Schur's lemma holds since the kernel of $\psi$ is a
+sub-representation of $V$, and the image of $\psi$ is a
+sub-representation of $W$. (This follows from the definition of a
+$G$-linear map, and in fact illustrates why the concept of a
+$G$-linear map is so important.) So if $V$ and $W$ are irreducible
+(have no sub-representation), then either $\psi$ is an
+isomorphism, or its the zero map.
+
+(Schur part 2) Isomorphisms must be scalar copies of the
+identity:
+
+For any $G$-linear map $\psi$ (why do we care about linearity
+again? I see why we care about the $G$-preservation part),
+it has an eigenvalue $\lambda$. Then $\psi-\lambda I$ is also a
+$G$-linear map, since $G$-linear maps are closed under linear
+combinations (why?). But then $\psi - \lambda I$ must be $0$, by
+the first part of Schur's lemma. 
+
+Note that $V$ and $W$ are treated as vector spaces over the
+complex numbers, which critically are algebraically complete
+(otherwise, $\psi$ might not have an eigenvalue). I don't really
+understand this part, and it would be worth going into detail
+about this at some point.
+
+
+\subsection{Tensors Blah} 
+Recall that the linear transform $g$ operating on $V^{*} \tensor W$,
+has eigenvectors $EigVec(g_v) \tensor EigVec(g_w)$ with
+eigenvalues $EigVal(g_v) \cdot EigVal(g_w)$. (This is crappy
+notation.)
+
+As a reminder, recall that 
+\[ g_{V \tensor W} (\sum_{i} v_i \tensor w_i ) = \sum_i (g_V
+\cdot v_i) \tensor (g_W \cdot w_i) \]
+
+\subsection{Miscellaneous Notes}
+As a final note, it's still unclear to me how characters are
+really magical. I suspect they can't really be that strong -- the
+character orthogonality is just disguising Schur's lemma, and
+some properties of tensors. Somehow they don't \textit{quite}
+seem like the right fundamental structure.....
+\section{Contributors}
+Observation about $P^{*}DP$ thanks to Ben Gunby.
+\end{document}

@@ -1,0 +1,75 @@
+There exist expanders without densifiers. In particular, there
+exist graphs $G$ satisfying:
+
+\[ \frac{1}{\text{poly log}} K_n \leq G \leq K_n \]
+
+that do not admit graphs with edge weights $ \leq 10 \text{poly
+log} /n$ that preserve all cuts up to a constant factor
+approximation. (Such a graph is called a densifier). Here, $K_n$
+is the complete graph on $n$ vertices.
+
+\textbf{Construction:}
+Construct a clique with vertices labeled $1$ through $a$. Construct a
+second clique with vertices $1'$ through $a'$. Each clique has
+edge weights $\frac{1}{\log n}$. Now build a matching of weight
+$a$ between vertices $k$ and $k'$ for all $k$. Such a graph has
+$2a$ vertices. This is a graph with a heavy matching between two
+cliques. Now set $a = n/2$ and let this graph be denoted as
+$Q_n$.
+
+Basic lemmas about densifier:
+\begin{lemma} 
+  \begin{enumerate}
+    \item If $H$ is a densifier of $G$, then $T(H)$ is a
+      densifier of $G$, where $T$ is any graph isomorphism of
+      $G$.
+    \item If $H_1$ and $H_2$ are both densifiers of $G$, then
+      any weighted average of $H_1$ and $H_2$ are densifiers of
+      $G$.
+    \item If $\textbf{T}$ is a family of isomorphisms of $G$ and
+      $H$ is a densifier, then the weighted average 
+      \[ \sum_{T \in \textbf{T}} T(H) \] is also a densifier of
+      $G$.
+  \end{enumerate}
+\end{lemma}
+I think each item is straightforward -- correct me if I'm wrong.
+
+\begin{theorem} $Q_n$ is an expander with poly log expansion \end{theorem}
+  \begin{proof} Every cut has conductance between $O(n / log n)$
+    and $O(n)$
+  \end{proof}
+
+Now our main theorem:
+\begin{theorem} $Q_n$ (defined in our construction) has no
+densifier \end{theorem}
+\begin{proof} If $Q_n$ has a $2$-densifier, then it has a densifier
+  whose clique edge weights are all the same. This can be
+  obtained by averaging over all graph isomorphisms that permute
+  the clique vertices. 
+
+  Moreover, the edge weights on the cliques are no more than
+  twice the original edge weights, and no less than half the
+  original edge weights. This is because the cut defined by
+  vertices $1, 1', 2, 2', \ldots a/2, a/2'$ has cut value of $a^2 /2
+  \log n$, as it cuts no edges in the matching. 
+
+  Thus, it follows that the cliques must have edge weights no
+  more than double and no less than half of their original edge
+  weights.
+
+  Now, by averaging over all permutations of vertices that fix the matching,
+  you can similarly show that there is a densifier where edge
+  weights on edge $ij'$ are all the same, for $i\not=j$. These
+  edge weights can't be too small, as the degree of each $i$ must
+  be preserved, weight on $ii'$ cannot be large (thus the edge
+  weight previously on $ii'$ must be distributed across edges
+  $ij'$ for $j\not=i$).
+
+  This ensures that the cut $1, 1', 2, 2', \ldots a/2, a/2'$ must
+  have cut value of $a^2/2$, which is at least a $\log n$
+  distortion from the original cut value. (I skipped a couple steps in this
+  deduction -- check me on this.)
+\end{proof}
+
+
+

@@ -1,0 +1,26 @@
+It seems to Tim Chu that if $k$ gets large, this number can be
+approximated by finding what power of $e_2$ lives in $\chi_{ij}$, where $e_2$ is the
+second smallest eigenvector of $L$, and thus the largest
+eigenvector of $L^\dag$. 
+
+So if I were to find this value as $k \rightarrow \infty$,
+assuming unique second eigenvector, I would find
+\[ \langle e_2, \chi_{ax}\rangle^2 = \left(\langle e_2, \chi_x\rangle - \langle e_2,
+    \chi_a\rangle\right)^2. \]
+Given fixed $x$ and variable $a$, this quantity is large for
+$\langle e_2, \chi_a\rangle$ near $\langle e_2, \chi_x\rangle$ and small when this value is
+far away. Formally, 
+\[ \langle e_2, \chi_{ax} \rangle^2 > \langle e_2, \chi_{bx}
+\rangle^2 \]
+if and only if
+\[ \langle e_2, \chi_{a} \rangle \] is closer to
+$\langle e_2, \chi_x \rangle$ than the equivalent thing for $b$ instead of $a$. 
+
+Note that radius balls here are not necessarily connected.
+Fiedler theorem kind of tells us that they are, but not really.
+But it does tell us these balls of radius $r$ around point $x$
+are connected, where $\chi_x$ has either the biggest positive
+component or biggest (in magnitude) negative component of the
+second eigenvector in it.
+
+

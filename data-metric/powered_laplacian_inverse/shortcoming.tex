@@ -1,0 +1,13 @@
+\section{Shortcomings}
+I attempted to determine whether the vertices $i$ where:
+$\chi_{i}^T \left(L^{\dag}\right)^k\chi_{ab}$ is $ \geq 0$, are connected. The
+motivation is that when $q=1$ its connected (voltage threshold
+cut), and when $q = \infty$ it's connected (Fiedler nodal
+domain).
+
+Turns out it's not. Take a star with edge weights $1$ except one
+edge with weight $3$. Then choose vertex $a$ and $b$ to be the center
+and the vertex with an edge of weight $3$ respectively. This will break
+connectivity.
+Maybe figuring out the proof for Fiedler's nodal domains will be
+helpful.
