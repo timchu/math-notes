@@ -1,0 +1,35 @@
+\input{header}
+\begin{document}
+
+\title{Title}
+\author{
+  Timothy Chu \\
+  Carnegie Mellon University\\
+  \texttt{tzchu@andrew.cmu.edu}
+}
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+Orecchia Sachdeva Vishnoi (2011) gives a spectral algorithm for
+balanced cut, that is $O(m / \tau)$ time. It takes in a parameter
+$b$ that's balance and conductance $\tau \leq 1$, and outputs whether
+a cut with balance $b$ and conductance $\leq \sqrt{\tau}$ is possible,
+  or whether all cuts have conductance $ \geq \tau$.
+
+  There is a gap here: if the best conductance is exactly $\tau$,
+  the algorithm only guarantees that a cut of conductance
+  $\sqrt{\tau}$ can be found. 
+  
+  However, can you binary search on
+  this? For instance, in this case, can I reduce my parameter
+  $\tau$ to $\tau^{1.5}$, and re-run this algorithm?
+\end{abstract}
+
+\clearpage
+\bibliographystyle{alpha}
+\bibliography{refs}
+\begin{appendix}
+\end{appendix}
+\end{document}
