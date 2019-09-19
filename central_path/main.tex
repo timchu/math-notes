@@ -1,0 +1,45 @@
+\input{header}
+\begin{document}
+
+\title{Title}
+\author{
+  Timothy Chu \\
+  Carnegie Mellon University\\
+  \texttt{tzchu@andrew.cmu.edu}
+}
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+  We aim to prove the Normed Path conjecture, which has
+  algorithmic implications.
+\end{abstract}
+\begin{theorem} (Normed Path Conjecture) If $\textbf{d}$ is a
+  demand that's feasible with congestion $1$ in the unit weighted
+  graph, then for any
+
+  \begin{align}
+    \Omega\left(\log^{O(1)} n\right) \leq p_1 \leq p_2 \leq \left(1 +
+    \frac{1}{\log^{O(1)}n} \right)p_1,
+  \end{align}
+  aka $p_1$ and $p_2$ are close to each other, and are big, we
+  have for all edges $e$:
+
+  \begin{align}
+  |f(p_1)_e - f(p_2)_e| \leq 0.1\left(1+\frac{10 \log n }{p} - |
+  f(p_1)_e| \right)
+  \end{align}
+\end{theorem}
+
+Where
+\[ 
+f(p) := \arg \min_{f : B^T f = d} \sum_{e \in G} \left(|x|^p + \sum_{q <
+p, q = 1.1^i, i \in \mathbb{Z}_+} |x|^q\right)
+\]
+\clearpage
+\bibliographystyle{alpha}
+\bibliography{refs}
+\begin{appendix}
+\end{appendix}
+\end{document}

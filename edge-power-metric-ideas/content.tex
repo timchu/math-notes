@@ -1,0 +1,41 @@
+In CMS17, it is proven that the nearest neighbor metric equals
+the edge squared metric. Formally:
+
+\begin{definition}
+\textbf{Edge $q$-power metrics} are defined as taking a point set
+$P$, taking the Euclidean distance between points $l$, and
+applying the function:
+
+\[ f(l) := (l/2)^q/q \]
+
+Then the shortest path on the resulting graph is computed.  This
+shortest path is the edge $q$-power metric.
+\end{definition}
+
+\begin{definition}
+\textbf{NN $q$-power metrics} wtih respect to point set $P$ are defined as taking the cost
+function:
+
+\[ d(x, P)^{q} \]
+
+and integrating this over $x$ along a path.
+\end{definition}
+
+CMS'17 showed that the edge $q$-power metric and the NN $q-1$
+power metric were equal for $q = 2$, and not true for $q < 2$
+(even for just two points, with the exception of $q = 1$. For $q
+ \leq 1$, the shortest path is always a straight line).
+
+\section{Open Questions}
+\begin{enumerate}
+\item What are the approximation factors you get from using
+CFMSV 15?
+\item What are the approximation factors you get from naively
+using CMS 17?
+\item What are the approximation factors you can get using flows
+on screw simplices? (Using a naive potential function).
+\item Can you prove or disprove that you can use: certain restrictive classes of
+potential functions that generate flows? (List three or so
+    classes of potential functions to restrict our search.
+    Really, there's an entire suite of such functions.)
+\end{enumerate}
