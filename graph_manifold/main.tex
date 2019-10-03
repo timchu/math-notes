@@ -1,0 +1,49 @@
+\input{header}
+\begin{document}
+
+\title{Title}
+\author{
+  Timothy Chu \\
+  Carnegie Mellon University\\
+  \texttt{tzchu@andrew.cmu.edu}
+}
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+We explore the idea of a graph manifold, and lay down some theorems
+we'd like to prove.
+\end{abstract}
+\clearpage
+Define a $F$-graph manifold, where $F$ is a family of graphs (possibly
+infinite cardinality), each graph having a marked point. We say that $G$ is an
+$F$-graph manifold if for each point $v$ in $G$, there exists a set of
+vertices $V$ containing $v$ such that the induced graph on $V$ is in
+$F$, and $v$ is the marked point.
+
+We can toggle whether we want the entire neighbor set of $v$ to be
+in $V$ or not. The reasons we might want to require this is because
+otherwise, ten squares joined at a point is a square-graph manifold,
+and it is unclear whether we want to allow that.
+
+Under this notion, treating $F$ as a $q$ by $q$ square gives the
+standard mesh manifolds for $2$ dimensions. Treating $f$ as the $k$
+point start is the $k$-ary binary tree. But low degree expanders are
+also $k$-ary tree graph manifolds under this definition. Tree to
+expander is like plane to sphere. (This link and definition are
+motivated by Wu'19).
+
+I wonder what kinds of theorems you can prove? You can probably also
+create definitions like graph crystals (some kind of regularity
+structure in the graph, depending only on the graph and not some
+ambient space). It seems like one could theoretically redo
+crystallography with this.
+
+But what theorems could be interesting?
+
+\bibliographystyle{alpha}
+\bibliography{refs}
+\begin{appendix}
+\end{appendix}
+\end{document}

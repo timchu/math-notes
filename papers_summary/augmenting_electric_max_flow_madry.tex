@@ -1,0 +1,45 @@
+\input{header}
+\begin{document}
+
+\title{Title}
+\author{
+  Timothy Chu \\
+  Carnegie Mellon University\\
+  \texttt{tzchu@andrew.cmu.edu}
+}
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+Madry '16 (Computing Maximum Flow with Augmenting Electric FlowS)
+presents a $O(m^{10/7}U^{1/7})$ time algorithm for computing max
+flows. He does so via an `interior point method', by maintainig a
+primal flow and a 'dual' (which seems to be an embedding into a line.
+What is the dual of the max flow, and why is it line embeddable?). 
+
+He maintains this feasible flow by finding an electrical flow with
+some resistor setting built from the residual flow (large resistor if
+low residual flow), and adds a small multiple of this electric flow to
+the actual flow. Then he uses some mysterious cycle-updating trick to
+make sure the primal and dual are 'well compled' (or as close to it as
+they can be), whatever this means.
+
+Madry maintains the dual for the purpose of helping his
+preconditioninng arcs idea, which
+is designed to make each step make some progress. But the
+math here, as with all optimization, is a large large mystery. The
+dual is apparently some kind of certificate that a demand is feasible,
+but it's not clear when a demand would not be feasible given
+augmenting-paths-based solutions.
+
+Why does this work? It really seems like it should not. I don't have
+any reason to believe the math works out.
+\end{abstract}
+
+\clearpage
+\bibliographystyle{alpha}
+\bibliography{refs}
+\begin{appendix}
+\end{appendix}
+\end{document}

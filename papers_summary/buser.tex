@@ -1,0 +1,55 @@
+\input{header}
+\begin{document}
+
+\title{Title}
+\author{
+  Timothy Chu \\
+  Carnegie Mellon University\\
+  \texttt{tzchu@andrew.cmu.edu}
+}
+
+\setcounter{page}{0}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+Buser shows that the isoperimetric cut of a surface with Ricci
+curvature bounded below, can be bounded as
+
+$\lambda_1 \leq C(H + H^2)$
+
+where $H$ is the isoperimetric ratio of a cut.
+
+The first proof technique uses an "area minimizing current", which
+shows that the curvature of the cut must be constant. 
+
+The second proof technique doens't use this: instead, they use an
+$\epsilon$ net to build a new division from the initial cut $X$ (which
+can be 'wavy'). This new 'cut' (doesn't have to be a hypersurface,
+isn't null, but can be full dimensional) is $\hat{X}$, and they do this by
+defining $\hat{X}$ to be the locus of points where a ball of radius
+$r$ has exactly half the mass in $A$ and half the mass in $B$. This
+'smooths' wavy cuts.
+
+Then they build an epsilon net around $\hat{X}$, and extend that to an
+epsilon net of the whole manifold. Finally, they build a little collar
+around $\hat{X}$, and use some properties of the hyperbolic spheres
+(only useful since hyperbolic sphere is some manifold lower bound on
+some volume terms relevant in the calculation, on objects of
+lower-bounded Ricci curvature) to establish the final bound.
+
+In short, they build a Rayleigh quotient using $\hat{X}$, a smoothed
+version of $X$ (that isn't exactly a 'cut', but still divides manifold
+$M$ into two pieces), via a collar of radius $r$ around $\hat{X}$. The
+Rayleigh quotient is $1$ on the parts outside of $\hat{X}$, while it
+is $d(p, \hat{X})/r$ everywhere else.
+
+$\epsilon$-nets are used for the analysis, but I am not sure they are
+used for the construction.
+\end{abstract}
+
+\clearpage
+\bibliographystyle{alpha}
+\bibliography{refs}
+\begin{appendix}
+\end{appendix}
+\end{document}
